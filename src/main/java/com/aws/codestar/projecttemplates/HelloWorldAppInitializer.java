@@ -1,31 +1,20 @@
 package com.aws.codestar.projecttemplates;
 
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import com.aws.codestar.projecttemplates.configuration.MvcConfig;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 
-/**
- * Utility to initialize the Spring MVC HelloWorld application.
- */
-public class HelloWorldAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-
-    @Override
-    protected Class<?>[] getRootConfigClasses() {
-        return new Class[] {
-                MvcConfig.class
-        };
-    }
+@SpringBootApplication
+public class HelloWorldAppInitializer extends SpringBootServletInitializer {
 
     @Override
-    protected Class<?>[] getServletConfigClasses() {
-        return null;
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(HelloWorldAppInitializer.class);
     }
 
-    @Override
-    protected String[] getServletMappings() {
-        return new String[] {
-                "/"
-        };
+    public static void main(String[] args) throws Exception {
+        SpringApplication.run(HelloWorldAppInitializer.class, args);
     }
-
 }
