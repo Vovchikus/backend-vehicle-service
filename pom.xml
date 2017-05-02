@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.aws.codestar.projecttemplates</groupId>
-    <artifactId>HelloWorld</artifactId>
+    <artifactId>MessageService</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
@@ -34,10 +34,14 @@
             <artifactId>json-path</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
     </dependencies>
 
     <properties>
-        <java.version>1.7</java.version>
+        <java.version>1.8</java.version>
     </properties>
 
     <build>
