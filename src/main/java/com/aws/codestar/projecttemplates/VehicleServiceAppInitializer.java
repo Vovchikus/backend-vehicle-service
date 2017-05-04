@@ -9,14 +9,14 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-public class MessageServiceAppInitializer extends SpringBootServletInitializer {
+public class VehicleServiceAppInitializer extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(MessageServiceAppInitializer.class);
+        return application.sources(VehicleServiceAppInitializer.class);
     }
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(MessageServiceAppInitializer.class, args);
+        SpringApplication.run(VehicleServiceAppInitializer.class, args);
     }
 }

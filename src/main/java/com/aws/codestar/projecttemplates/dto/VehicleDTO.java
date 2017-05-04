@@ -1,19 +1,25 @@
 package com.aws.codestar.projecttemplates.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
-public final class MessageDTO {
+@JsonRootName("vehicles")
+public final class VehicleDTO implements Serializable {
 
     private String id;
 
-    @Size(max = 100)
-    private String description;
-
     @NotEmpty
-    @Size(max = 200)
+    @Size(max = 255)
+    @JsonProperty("title")
     private String title;
+
+    @Size(max = 1000)
+    @JsonProperty("description")
+    private String description;
 
     public String getId() {
         return id;
@@ -27,6 +33,7 @@ public final class MessageDTO {
         return description;
     }
 
+    @JsonProperty("description")
     public void setDescription(String description) {
         this.description = description;
     }
@@ -35,6 +42,7 @@ public final class MessageDTO {
         return title;
     }
 
+    @JsonProperty("title")
     public void setTitle(String title) {
         this.title = title;
     }

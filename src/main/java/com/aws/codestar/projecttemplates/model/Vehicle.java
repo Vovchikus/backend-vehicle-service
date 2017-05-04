@@ -1,30 +1,16 @@
 package com.aws.codestar.projecttemplates.model;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.springframework.data.annotation.Id;
 
-public class Message {
-
-    public static int MAX_LENGTH_DESCRIPTION = 500;
-    public static int MAX_LENGTH_TITLE = 100;
-
+@JsonTypeName("vehicles")
+public class Vehicle {
     @Id
     public String id;
 
     public String title;
 
     public String description;
-
-    public Message(String title, String description) {
-        this.title = title;
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "Message[id=%s, title='%s', description='%s']",
-                id, title, description);
-    }
 
     public String getId() {
         return id;
