@@ -1,6 +1,7 @@
 package com.aws.codestar.projecttemplates.service;
 
 import com.aws.codestar.projecttemplates.dto.VehicleDTO;
+import com.aws.codestar.projecttemplates.exception.VehicleNotFoundException;
 import com.aws.codestar.projecttemplates.model.Vehicle;
 import com.aws.codestar.projecttemplates.repository.VehicleRepository;
 import com.aws.codestar.projecttemplates.structure.VehicleList;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -40,6 +42,17 @@ class MongoDBVehicleService implements VehicleService {
         return list;
     }
 
+    @Override
+    public VehicleDTO findById(String id) {
+        Vehicle found = null;
+        try {
+            found = findVehicleById(id);
+        } catch (VehicleNotFoundException e) {
+            e.printStackTrace();
+        }
+        return convertToDTO(found);
+    }
+
     private List<VehicleDTO> convertToDTOs(List<Vehicle> models) {
         return models.stream()
                 .map(this::convertToDTO)
@@ -52,5 +65,10 @@ class MongoDBVehicleService implements VehicleService {
         vehicleDTO.setTitle(model.getTitle());
         vehicleDTO.setDescription(model.getDescription());
         return vehicleDTO;
+    }
+
+    private Vehicle findVehicleById(String id) throws VehicleNotFoundException {
+        Optional<Vehicle> result = Optional.ofNullable(repository.findOne(id));
+        return result.orElseThrow(() -> new VehicleNotFoundException());
     }
 }

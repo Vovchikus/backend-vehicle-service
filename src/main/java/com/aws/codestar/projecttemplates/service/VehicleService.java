@@ -9,4 +9,6 @@ public interface VehicleService {
 
     VehicleList<VehicleDTO> findAll();
 
+    VehicleDTO findById(String id);
+
 }

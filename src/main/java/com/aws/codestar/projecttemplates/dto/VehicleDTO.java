@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 
 @JsonRootName("vehicles")
 public final class VehicleDTO implements Serializable {
@@ -21,6 +22,9 @@ public final class VehicleDTO implements Serializable {
     @JsonProperty("description")
     private String description;
 
+    @JsonProperty("photos")
+    private List photos;
+
     public String getId() {
         return id;
     }
@@ -33,7 +37,6 @@ public final class VehicleDTO implements Serializable {
         return description;
     }
 
-    @JsonProperty("description")
     public void setDescription(String description) {
         this.description = description;
     }
@@ -42,8 +45,15 @@ public final class VehicleDTO implements Serializable {
         return title;
     }
 
-    @JsonProperty("title")
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public List getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List photos) {
+        this.photos = photos;
     }
 }

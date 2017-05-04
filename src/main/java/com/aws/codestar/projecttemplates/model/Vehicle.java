@@ -1,9 +1,9 @@
 package com.aws.codestar.projecttemplates.model;
 
-import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.springframework.data.annotation.Id;
 
-@JsonTypeName("vehicles")
+import java.util.List;
+
 public class Vehicle {
     @Id
     public String id;
@@ -11,6 +11,8 @@ public class Vehicle {
     public String title;
 
     public String description;
+
+    public List photos;
 
     public String getId() {
         return id;
@@ -34,5 +36,13 @@ public class Vehicle {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List photos) {
+        this.photos = photos;
     }
 }
