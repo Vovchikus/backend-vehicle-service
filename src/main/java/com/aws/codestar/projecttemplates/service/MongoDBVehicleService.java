@@ -1,5 +1,6 @@
 package com.aws.codestar.projecttemplates.service;
 
+import com.aws.codestar.projecttemplates.converter.PhotoConverter;
 import com.aws.codestar.projecttemplates.dto.VehicleDTO;
 import com.aws.codestar.projecttemplates.exception.VehicleNotFoundException;
 import com.aws.codestar.projecttemplates.model.Vehicle;
@@ -17,16 +18,19 @@ import static java.util.stream.Collectors.toList;
 class MongoDBVehicleService implements VehicleService {
 
     private final VehicleRepository repository;
+    private final PhotoConverter photoConverter;
 
     @Autowired
-    MongoDBVehicleService(VehicleRepository repository) {
+    MongoDBVehicleService(VehicleRepository repository, PhotoConverter photoConverter) {
         this.repository = repository;
+        this.photoConverter = photoConverter;
     }
 
     public VehicleDTO create(VehicleDTO vehicleDTO) {
         Vehicle vehicle = new Vehicle();
         vehicle.setTitle(vehicleDTO.getTitle());
         vehicle.setDescription(vehicleDTO.getDescription());
+        vehicle.setPhotos(photoConverter.convert(vehicleDTO.getPhotos()));
         vehicle = repository.save(vehicle);
         return convertToDTO(vehicle);
     }
@@ -44,12 +48,7 @@ class MongoDBVehicleService implements VehicleService {
 
     @Override
     public VehicleDTO findById(String id) {
-        Vehicle found = null;
-        try {
-            found = findVehicleById(id);
-        } catch (VehicleNotFoundException e) {
-            e.printStackTrace();
-        }
+        Vehicle found = findVehicleById(id);
         return convertToDTO(found);
     }
 
@@ -64,6 +63,7 @@ class MongoDBVehicleService implements VehicleService {
         vehicleDTO.setId(model.getId());
         vehicleDTO.setTitle(model.getTitle());
         vehicleDTO.setDescription(model.getDescription());
+        vehicleDTO.setPhotos(model.getPhotos());
         return vehicleDTO;
     }
 

@@ -12,7 +12,7 @@ public class Vehicle {
 
     public String description;
 
-    public List photos;
+    public List<Photo> photos;
 
     public String getId() {
         return id;
@@ -38,11 +38,11 @@ public class Vehicle {
         this.description = description;
     }
 
-    public List getPhotos() {
+    public List<Photo> getPhotos() {
         return photos;
     }
 
-    public void setPhotos(List photos) {
+    public void setPhotos(List<Photo> photos) {
         this.photos = photos;
     }
 }

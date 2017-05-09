@@ -1,5 +1,6 @@
 package com.aws.codestar.projecttemplates.dto;
 
+import com.aws.codestar.projecttemplates.model.Photo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -23,7 +24,7 @@ public final class VehicleDTO implements Serializable {
     private String description;
 
     @JsonProperty("photos")
-    private List photos;
+    private List<Photo> photos;
 
     public String getId() {
         return id;
@@ -49,11 +50,11 @@ public final class VehicleDTO implements Serializable {
         this.title = title;
     }
 
-    public List getPhotos() {
+    public List<Photo> getPhotos() {
         return photos;
     }
 
-    public void setPhotos(List photos) {
+    public void setPhotos(List<Photo> photos) {
         this.photos = photos;
     }
 }

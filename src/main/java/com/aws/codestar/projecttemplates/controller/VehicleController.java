@@ -8,7 +8,10 @@ import com.aws.codestar.projecttemplates.structure.VehicleList;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,10 +22,12 @@ import java.io.IOException;
 @RequestMapping(value = "/api/vehicles", headers = "Accept=application/json")
 public class VehicleController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(VehicleController.class);
+
     private final VehicleService service;
 
     @Autowired
-    VehicleController(VehicleService service) {
+    VehicleController(VehicleService service, ApplicationContext applicationContext) {
         this.service = service;
     }
 
@@ -46,15 +51,13 @@ public class VehicleController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.OK)
     public VehicleDTO findById(@PathVariable("id") String id) {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
         return service.findById(id);
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public void handleVehicleNotFound(VehicleNotFoundException ex) {
+        LOGGER.error("Handling error with message: {}", ex.getMessage());
     }
 }

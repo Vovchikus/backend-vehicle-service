@@ -1,10 +1,8 @@
 package com.aws.codestar.projecttemplates.exception;
 
-public class VehicleNotFoundException extends Exception {
-    public VehicleNotFoundException() {
-    }
+public class VehicleNotFoundException extends RuntimeException {
 
-    public VehicleNotFoundException(String message) {
-        super(message);
+    public VehicleNotFoundException() {
+        super("No todo entry found with id - ");
     }
 }
