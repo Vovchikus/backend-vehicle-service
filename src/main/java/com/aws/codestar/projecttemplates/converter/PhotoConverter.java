@@ -30,7 +30,6 @@ public class PhotoConverter {
     public List<Photo> convert(List<Photo> photos) {
         List<Photo> photoList = new ArrayList<>();
         for (Photo photo : photos) {
-
             try {
                 byte[] decodedPhoto = Base64.getDecoder().decode(photo.original.getBytes("UTF-8"));
 
