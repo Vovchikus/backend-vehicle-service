@@ -70,10 +70,10 @@ public class PhotoConverter {
 
                 photo.setOriginal(
                         "http://ec2-34-209-34-16.us-west-2.compute.amazonaws.com/resources/photos/" +
-                                uniqueID + "/" + THUMBNAIL + ".jpg");
+                                uniqueID + "/" + ORIGINAL + ".jpg");
                 photo.setThumbnail(
                         "http://ec2-34-209-34-16.us-west-2.compute.amazonaws.com/resources/photos/" +
-                                uniqueID + "/" + ORIGINAL + ".jpg");
+                                uniqueID + "/" + THUMBNAIL + ".jpg");
                 photoList.add(photo);
 
 
