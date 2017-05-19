@@ -9,25 +9,10 @@ import java.util.List;
 public class VehicleResponse {
 
     private String id;
-    private String title;
-    private String description;
+    private String mark;
+    private String model;
+    private Integer price;
     private List<ImageResponse> images;
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public List<ImageResponse> getImages() {
         return images;
@@ -43,5 +28,29 @@ public class VehicleResponse {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getMark() {
+        return mark;
+    }
+
+    public void setMark(String mark) {
+        this.mark = mark;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 }

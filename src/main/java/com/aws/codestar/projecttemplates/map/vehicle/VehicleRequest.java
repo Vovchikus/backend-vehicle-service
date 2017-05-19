@@ -15,31 +15,18 @@ public class VehicleRequest {
 
     @NotEmpty
     @Size(max = 255)
-    @JsonProperty("title")
-    private String title;
+    @JsonProperty("mark")
+    private String mark;
 
-    @Size(max = 1000)
-    @JsonProperty("description")
-    private String description;
+    @Size(max = 255)
+    @JsonProperty("model")
+    private String model;
+
+    @JsonProperty("price")
+    private Integer price;
 
     @JsonProperty("images")
     private List<ImageRequest> images;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public List<ImageRequest> getImages() {
         return images;
@@ -47,5 +34,29 @@ public class VehicleRequest {
 
     public void setImages(List<ImageRequest> images) {
         this.images = images;
+    }
+
+    public String getMark() {
+        return mark;
+    }
+
+    public void setMark(String mark) {
+        this.mark = mark;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 }

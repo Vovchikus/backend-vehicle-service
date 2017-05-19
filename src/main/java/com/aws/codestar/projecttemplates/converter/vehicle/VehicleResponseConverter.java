@@ -23,8 +23,9 @@ public class VehicleResponseConverter {
 
     public VehicleResponse convert(Vehicle vehicle) {
         VehicleResponse vehicleResponse = new VehicleResponse();
-        vehicleResponse.setDescription(vehicle.getDescription());
-        vehicleResponse.setTitle(vehicle.getTitle());
+        vehicleResponse.setMark(vehicle.getMark());
+        vehicleResponse.setModel(vehicle.getModel());
+        vehicleResponse.setPrice(vehicle.getPrice());
         vehicleResponse.setId(vehicle.getId());
         vehicleResponse.setImages(this.getImages(vehicle));
         return vehicleResponse;

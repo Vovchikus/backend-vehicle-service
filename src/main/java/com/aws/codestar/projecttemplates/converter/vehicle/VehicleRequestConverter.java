@@ -19,8 +19,9 @@ public class VehicleRequestConverter {
 
     public Vehicle convert(VehicleRequest vehicleRequest) {
         Vehicle vehicle = new Vehicle();
-        vehicle.setTitle(vehicleRequest.getTitle());
-        vehicle.setDescription(vehicleRequest.getDescription());
+        vehicle.setMark(vehicleRequest.getMark());
+        vehicle.setModel(vehicleRequest.getModel());
+        vehicle.setPrice(vehicleRequest.getPrice());
         vehicle.setImages(this.getImages(vehicleRequest.getImages()));
         return vehicle;
     }
