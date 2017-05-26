@@ -1,20 +1,25 @@
 package com.aws.codestar.projecttemplates.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.Date;
 import java.util.List;
 
 public class Vehicle {
     @Id
-    public String id;
+    private String id;
 
-    public String mark;
+    private String mark;
 
-    public String model;
+    private String model;
 
-    public Integer price;
+    private Integer price;
 
-    public List<Image> images;
+    private List<Image> images;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private Date created;
 
     public String getId() {
         return id;
@@ -37,7 +42,7 @@ public class Vehicle {
     }
 
     public void setMark(String mark) {
-        this.mark = mark.toUpperCase();
+        this.mark = Character.toUpperCase(mark.charAt(0)) + mark.toLowerCase().substring(1);
     }
 
     public String getModel() {
@@ -45,7 +50,7 @@ public class Vehicle {
     }
 
     public void setModel(String model) {
-        this.model = model.toUpperCase();
+        this.model = Character.toUpperCase(mark.charAt(0)) + mark.toLowerCase().substring(1);
     }
 
     public Integer getPrice() {
@@ -54,5 +59,13 @@ public class Vehicle {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
     }
 }

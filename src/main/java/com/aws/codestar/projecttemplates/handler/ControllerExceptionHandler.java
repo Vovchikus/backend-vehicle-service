@@ -1,6 +1,6 @@
 package com.aws.codestar.projecttemplates.handler;
 
-import com.aws.codestar.projecttemplates.dto.ValidationErrorDTO;
+import com.aws.codestar.projecttemplates.map.error.ValidationError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -28,22 +28,20 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-    public ValidationErrorDTO processValidationError(MethodArgumentNotValidException ex) {
+    public ValidationError processValidationError(MethodArgumentNotValidException ex) {
         BindingResult result = ex.getBindingResult();
         List<FieldError> fieldErrors = result.getFieldErrors();
 
         return processFieldErrors(fieldErrors);
     }
 
-    private ValidationErrorDTO processFieldErrors(List<FieldError> fieldErrors) {
-        ValidationErrorDTO dto = new ValidationErrorDTO();
-
+    private ValidationError processFieldErrors(List<FieldError> fieldErrors) {
+        ValidationError validationError = new ValidationError();
         for (FieldError fieldError: fieldErrors) {
             String localizedErrorMessage = resolveLocalizedErrorMessage(fieldError);
-            dto.addFieldError(fieldError.getField(), localizedErrorMessage);
+            validationError.addFieldError(fieldError.getField(), localizedErrorMessage);
         }
-
-        return dto;
+        return validationError;
     }
 
     private String resolveLocalizedErrorMessage(FieldError fieldError) {
@@ -53,7 +51,6 @@ public class ControllerExceptionHandler {
             String[] fieldErrorCodes = fieldError.getCodes();
             localizedErrorMessage = fieldErrorCodes[0];
         }
-
         return localizedErrorMessage;
     }
 }

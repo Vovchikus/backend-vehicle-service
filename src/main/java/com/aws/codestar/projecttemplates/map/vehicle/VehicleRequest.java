@@ -1,11 +1,12 @@
 package com.aws.codestar.projecttemplates.map.vehicle;
 
 import com.aws.codestar.projecttemplates.map.image.ImageRequest;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.NumberFormat;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -13,19 +14,18 @@ import java.util.List;
 @JsonRootName("vehicles")
 public class VehicleRequest {
 
-    @NotEmpty
+    @NotEmpty(message = "Поле mark не может быть пустым")
     @Size(max = 255)
-    @JsonProperty("mark")
     private String mark;
 
+    @NotEmpty(message = "Поле model не может быть пустым")
     @Size(max = 255)
-    @JsonProperty("model")
     private String model;
 
-    @JsonProperty("price")
+    @NotNull
+    @NumberFormat
     private Integer price;
 
-    @JsonProperty("images")
     private List<ImageRequest> images;
 
     public List<ImageRequest> getImages() {

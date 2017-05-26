@@ -9,6 +9,7 @@ import com.aws.codestar.projecttemplates.model.Vehicle;
 import com.aws.codestar.projecttemplates.repository.VehicleRepository;
 import com.aws.codestar.projecttemplates.structure.VehicleList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,7 +35,7 @@ class MongoDBVehicleService implements VehicleService {
 
     @Override
     public VehicleList<VehicleResponse> findAll() {
-        List<Vehicle> vehicles = repository.findAll();
+        List<Vehicle> vehicles = repository.findAll(new Sort(Sort.Direction.DESC, "created"));
         VehicleList<VehicleResponse> vehicleList = new VehicleList<>();
         for (Vehicle vehicle : vehicles) {
             vehicleList.add(this.vehicleResponseConverter.convert(vehicle));

@@ -1,8 +1,8 @@
 package com.aws.codestar.projecttemplates.map.vehicle;
 
-import com.aws.codestar.projecttemplates.map.image.ImageResponse;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import java.util.HashMap;
 import java.util.List;
 
 @JsonRootName("vehicle")
@@ -12,13 +12,14 @@ public class VehicleResponse {
     private String mark;
     private String model;
     private Integer price;
-    private List<ImageResponse> images;
+    private List<HashMap> images;
+    private String created;
 
-    public List<ImageResponse> getImages() {
+    public List<HashMap> getImages() {
         return images;
     }
 
-    public void setImages(List<ImageResponse> images) {
+    public void setImages(List<HashMap> images) {
         this.images = images;
     }
 
@@ -52,5 +53,13 @@ public class VehicleResponse {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
     }
 }

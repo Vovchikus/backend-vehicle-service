@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -23,6 +24,7 @@ public class VehicleRequestConverter {
         vehicle.setModel(vehicleRequest.getModel());
         vehicle.setPrice(vehicleRequest.getPrice());
         vehicle.setImages(this.getImages(vehicleRequest.getImages()));
+        vehicle.setCreated(new Date());
         return vehicle;
     }
 
