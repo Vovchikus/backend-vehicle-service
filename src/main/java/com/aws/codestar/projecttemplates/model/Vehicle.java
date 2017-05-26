@@ -50,7 +50,7 @@ public class Vehicle {
     }
 
     public void setModel(String model) {
-        this.model = Character.toUpperCase(mark.charAt(0)) + mark.toLowerCase().substring(1);
+        this.model = Character.toUpperCase(model.charAt(0)) + model.toLowerCase().substring(1);
     }
 
     public Integer getPrice() {
