@@ -14,11 +14,11 @@ import java.util.List;
 @JsonRootName("vehicles")
 public class VehicleRequest {
 
-    @NotEmpty(message = "Поле mark не может быть пустым")
+    @NotEmpty()
     @Size(max = 255)
     private String mark;
 
-    @NotEmpty(message = "Поле model не может быть пустым")
+    @NotEmpty()
     @Size(max = 255)
     private String model;
 

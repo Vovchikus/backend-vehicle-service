@@ -1,6 +1,6 @@
 package com.aws.codestar.projecttemplates.controller;
 
-import com.aws.codestar.projecttemplates.exception.VehicleNotFoundException;
+import com.aws.codestar.projecttemplates.map.error.ApiError;
 import com.aws.codestar.projecttemplates.map.vehicle.VehicleRequest;
 import com.aws.codestar.projecttemplates.map.vehicle.VehicleResponse;
 import com.aws.codestar.projecttemplates.repository.VehicleRepository;
@@ -12,8 +12,11 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import javax.validation.Valid;
 
@@ -50,9 +53,11 @@ public class VehicleController {
         return vehicleService.findOne(id);
     }
 
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public void handleVehicleNotFound(VehicleNotFoundException ex) {
+    @ExceptionHandler({ Exception.class })
+    public ResponseEntity<Object> handleAll(Exception ex, WebRequest request) {
+        ApiError apiError = new ApiError(
+                HttpStatus.INTERNAL_SERVER_ERROR, ex.getLocalizedMessage(), "error occurred");
         LOGGER.error("Handling error with message: {}", ex.getMessage());
+        return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
     }
 }
