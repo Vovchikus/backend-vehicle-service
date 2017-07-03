@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 @Service
 public class ImagePathBuilder {
 
-    public static final String DOMAIN = "http://ec2-34-209-34-16.us-west-2.compute.amazonaws.com/";
+    public static final String DOMAIN = "";
     public static final String PATH = "resources/images/";
 
     private StringBuilder buildImageDirectoryPath(String unique, String contextPath) {
